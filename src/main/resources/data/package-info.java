@@ -1,1 +1,4 @@
-package data for reference values;
+/**
+ * Package for reference data files.
+ */
+package data;

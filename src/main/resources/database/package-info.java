@@ -1,1 +1,4 @@
-package database for H2 database file;
+/**
+ * Package for H2 database file.
+ */
+package database;
