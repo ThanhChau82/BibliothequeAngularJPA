@@ -32,7 +32,7 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="book_id")
-	private Long id;
+	private Long bookId;
 	
 	@Column(name="isbn", nullable = false, unique = true)
 	private String isbn;
@@ -66,7 +66,7 @@ public class Book {
 	public Book(Long id, String isbn, String title, LocalDate releaseDate, LocalDate registerDate, String author,
 			Integer totalExemplaries, Category category, Set<Loan> loans) {
 		super();
-		this.id = id;
+		this.bookId = id;
 		this.isbn = isbn;
 		this.title = title;
 		this.releaseDate = releaseDate;
@@ -78,11 +78,11 @@ public class Book {
 	}
 
 	public Long getId() {
-		return id;
+		return bookId;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.bookId = id;
 	}
 
 	public String getIsbn() {
