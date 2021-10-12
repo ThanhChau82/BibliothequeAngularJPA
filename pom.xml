@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>BibliothequeAngularJPA</name>
-	<description>Spring Boot library project for managing books</description>
+	<description>Spring Boot library project for managing books with package by feature architecture</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
