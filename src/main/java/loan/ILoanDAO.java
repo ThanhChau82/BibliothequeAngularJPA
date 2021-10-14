@@ -18,10 +18,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ILoanDAO extends JpaRepository<Loan, LoanId> {
 	/**
-	 * Find all loans
+	 * Find all open loans of a given customer by his email.
 	 * 
-	 * @param email
-	 * @param status
+	 * @param email  of customer
+	 * @param status ('OPEN') of loan
 	 * @return
 	 */
 	@Query("SELECT l from Loan l INNER JOIN l.pk.customer c WHERE UPPER(c.email) = UPPER(:email) AND l.status = :status")
@@ -45,6 +45,6 @@ public interface ILoanDAO extends JpaRepository<Loan, LoanId> {
 	 * @return
 	 */
 	@Query("SELECT l from Loan l INNER JOIN l.pk.book b INNER JOIN l.pk.customer c WHERE b.bookId = :bookId AND c.customerId = :customerId")
-	public List<Loan> findLoanByCriteria(@Param("bookId") Long bookId, @Param("customerId") Long customerId,
+	public Loan findLoanByCriteria(@Param("bookId") Long bookId, @Param("customerId") Long customerId,
 			@Param("status") LoanStatus status);
 }

@@ -16,13 +16,15 @@ import org.springframework.stereotype.Repository;
 public interface ICustomerDAO extends JpaRepository<Customer, Long> {
 	/**
 	 * Find a customer by his email.
+	 * 
 	 * @param email
 	 * @return
 	 */
 	public Customer findByEmailIgnoreCase(String email);
-	
+
 	/**
 	 * Find all customer that the last name likes the given string.
+	 * 
 	 * @return
 	 */
 	public List<Customer> findByLastNameLikeIgnoreCase(String lastName);

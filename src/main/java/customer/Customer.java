@@ -24,38 +24,38 @@ import loan.Loan;
  *
  */
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="customer_id")
+	@Column(name = "customer_id")
 	private Long customerId;
-	
-	@Column(name="first_name", nullable = false)
+
+	@Column(name = "first_name", nullable = false)
 	private String firstName;
-	
-	@Column(name="last_name", nullable = false)
+
+	@Column(name = "last_name", nullable = false)
 	private String lastName;
-	
-	@Column(name="job")
+
+	@Column(name = "job")
 	private String job;
-	
-	@Column(name="adresse")
+
+	@Column(name = "adresse")
 	private String adresse;
-	
-	@Column(name="email", nullable = false, unique = true)
+
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
-	
-	@Column(name="register_date", nullable = false)
+
+	@Column(name = "register_date", nullable = false)
 	private LocalDate registerDate;
-	
+
 	@OneToMany(mappedBy = "pk.customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Loan> loans = new HashSet<Loan>();		
+	private Set<Loan> loans = new HashSet<Loan>();
 
 	public Customer() {
 		super();
 	}
-	
+
 	public Customer(Long customerId, String firstName, String lastName, String job, String adresse, String email,
 			LocalDate registerDate, Set<Loan> loans) {
 		super();
@@ -132,5 +132,5 @@ public class Customer {
 	public void setLoans(Set<Loan> loans) {
 		this.loans = loans;
 	}
-	
+
 }

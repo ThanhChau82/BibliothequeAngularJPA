@@ -27,38 +27,38 @@ import loan.Loan;
  *
  */
 @Entity
-@Table(name="book")
+@Table(name = "book")
 public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="book_id")
+	@Column(name = "book_id")
 	private Long bookId;
-	
-	@Column(name="isbn", nullable = false, unique = true)
+
+	@Column(name = "isbn", nullable = false, unique = true)
 	private String isbn;
-	
-	@Column(name="title", nullable = false)
+
+	@Column(name = "title", nullable = false)
 	private String title;
-	
-	@Column(name="release_date", nullable = false)
+
+	@Column(name = "release_date", nullable = false)
 	private LocalDate releaseDate;
-	
-	@Column(name="register_date", nullable = false)
+
+	@Column(name = "register_date", nullable = false)
 	private LocalDate registerDate;
-	
-	@Column(name="author", nullable = false)
+
+	@Column(name = "author", nullable = false)
 	private String author;
-	
-	@Column(name="total_exemplaries")
+
+	@Column(name = "total_exemplaries")
 	private Integer totalExemplaries;
-	
+
 	@ManyToOne(optional = false)
-	@JoinColumn(name="cat_code", referencedColumnName = "code")
+	@JoinColumn(name = "cat_code", referencedColumnName = "code")
 	private Category category;
-	
+
 	@OneToMany(mappedBy = "pk.book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Loan> loans = new HashSet<Loan>();
-	
+
 	public Book() {
 		super();
 	}
@@ -147,6 +147,6 @@ public class Book {
 
 	public void setLoans(Set<Loan> loans) {
 		this.loans = loans;
-	}	
-	
+	}
+
 }
