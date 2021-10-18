@@ -16,7 +16,17 @@ public class LoanDTO {
 	private Long bookId;
 
 	@ApiModelProperty(value = "Customer id concerned by the loan")
-	private Long customerId;
+	private Long customerId;	
+
+	public LoanDTO() {
+		super();
+	}
+
+	public LoanDTO(Long bookId, Long customerId) {
+		super();
+		this.bookId = bookId;
+		this.customerId = customerId;
+	}
 
 	public Long getBookId() {
 		return bookId;
