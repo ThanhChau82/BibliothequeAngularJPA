@@ -34,6 +34,22 @@ public class CustomerDTO {
 
 	@ApiModelProperty(value = "Customer registration date in the library")
 	private LocalDate registerDate;
+	
+	public CustomerDTO() {
+		super();
+	}
+
+	public CustomerDTO(Long customerId, String firstName, String lastName, String job, String adresse, String email,
+			LocalDate registerDate) {
+		super();
+		this.customerId = customerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.job = job;
+		this.adresse = adresse;
+		this.email = email;
+		this.registerDate = registerDate;
+	}
 
 	public Long getCustomerId() {
 		return customerId;

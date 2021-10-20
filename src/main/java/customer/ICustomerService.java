@@ -56,4 +56,12 @@ public interface ICustomerService {
 	 * @param customerId
 	 */
 	public void deleteCustomer(Long customerId);
+
+	/**
+	 * Check if customerId exists.
+	 * 
+	 * @param customerId
+	 * @return
+	 */
+	public boolean checkIfCustomerIdExists(Long customerId);
 }

@@ -4,6 +4,8 @@
 package loan;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -84,7 +86,7 @@ public class LoanServiceImplMockitoJUnitTest {
 
 	/**
 	 * Test method for
-	 * {@link loan.LoanServiceImpl#findAllOpenLoansOfThisCustomer(java.lang.String)}.
+	 * {@link loan.LoanServiceImpl#findAllOpenLoansOfCustomer(java.lang.String)}.
 	 */
 	@Test
 	public void testFindAllOpenLoansOfThisCustomer() {
@@ -99,7 +101,7 @@ public class LoanServiceImplMockitoJUnitTest {
 		when(loanDAOMock.findAllOpenLoansOfThisCustomerByEmail(TEST_STRING, LoanStatus.OPENED)).thenReturn(loans);
 
 		// Test.
-		List<Loan> results = loanService.findAllOpenLoansOfThisCustomer(TEST_STRING);
+		List<Loan> results = loanService.findAllOpenLoansOfCustomer(TEST_STRING);
 
 		// Verify.
 		assertEquals(2, results.size());
@@ -156,6 +158,7 @@ public class LoanServiceImplMockitoJUnitTest {
 	public void testCloseLoan() {
 		// Initializer mock.
 		Loan loan = new Loan();
+		loan.setStatus(LoanStatus.OPENED);
 
 		when(loanDAOMock.save(loan)).thenReturn(loan);
 
@@ -164,7 +167,51 @@ public class LoanServiceImplMockitoJUnitTest {
 
 		// Verify.
 		assertEquals(loan, result);
+		assertEquals(LoanStatus.CLOSED, result.getStatus());
 		verify(loanDAOMock, times(1)).save(loan);
 	}
 
+	/**
+	 * Test method for
+	 * {@link loan.LoanServiceImpl#checkIfLoanExists(loan.LoanDTO)}.<br>
+	 * Case 1: loan exists.
+	 */
+	@Test
+	public void testCheckIfLoanExistsOK() {
+		// Initializer mock.
+		LoanDTO loanDTO = new LoanDTO(Long.valueOf(1), Long.valueOf(2));
+
+		when(loanDAOMock.findLoanByCriteria(loanDTO.getBookId(), loanDTO.getCustomerId(), LoanStatus.OPENED))
+				.thenReturn(new Loan());
+
+		// Test.
+		boolean result = loanService.checkIfLoanExists(loanDTO);
+
+		// Verify.
+		assertTrue(result);
+		verify(loanDAOMock, times(1)).findLoanByCriteria(loanDTO.getBookId(), loanDTO.getCustomerId(),
+				LoanStatus.OPENED);
+	}
+
+	/**
+	 * Test method for
+	 * {@link loan.LoanServiceImpl#checkIfLoanExists(loan.LoanDTO)}.<br>
+	 * Case 2: loan does not exist.
+	 */
+	@Test
+	public void testCheckIfLoanExistsKO() {
+		// Initializer mock.
+		LoanDTO loanDTO = new LoanDTO(Long.valueOf(1), Long.valueOf(2));
+
+		when(loanDAOMock.findLoanByCriteria(loanDTO.getBookId(), loanDTO.getCustomerId(), LoanStatus.OPENED))
+				.thenReturn(null);
+
+		// Test.
+		boolean result = loanService.checkIfLoanExists(loanDTO);
+
+		// Verify.
+		assertFalse(result);
+		verify(loanDAOMock, times(1)).findLoanByCriteria(loanDTO.getBookId(), loanDTO.getCustomerId(),
+				LoanStatus.OPENED);
+	}
 }

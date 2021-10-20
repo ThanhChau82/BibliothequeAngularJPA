@@ -56,17 +56,9 @@ public class Customer {
 		super();
 	}
 
-	public Customer(Long customerId, String firstName, String lastName, String job, String adresse, String email,
-			LocalDate registerDate, Set<Loan> loans) {
+	public Customer(Long customerId) {
 		super();
 		this.customerId = customerId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.job = job;
-		this.adresse = adresse;
-		this.email = email;
-		this.registerDate = registerDate;
-		this.loans = loans;
 	}
 
 	public Long getCustomerId() {

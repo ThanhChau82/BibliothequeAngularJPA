@@ -33,10 +33,10 @@ public interface ILoanService {
 	 * @param email
 	 * @return
 	 */
-	public List<Loan> findAllOpenLoansOfThisCustomer(String email);
+	public List<Loan> findAllOpenLoansOfCustomer(String email);
 
 	/**
-	 * Find all loans that theirs end dates are before the given date.
+	 * Find all loans that the end dates are before the given date.
 	 * 
 	 * @param maxEndDate
 	 * @return
@@ -58,5 +58,13 @@ public interface ILoanService {
 	 * @return
 	 */
 	public Loan closeLoan(Loan loan);
+
+	/**
+	 * Check if loan exists.
+	 * 
+	 * @param loanDTO
+	 * @return
+	 */
+	public boolean checkIfLoanExists(LoanDTO loanDTO);
 
 }

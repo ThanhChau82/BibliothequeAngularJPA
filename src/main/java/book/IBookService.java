@@ -64,4 +64,12 @@ public interface IBookService {
 	 * @param bookId
 	 */
 	public void deleteBook(Long bookId);
+
+	/**
+	 * Check if bookId exists.
+	 * 
+	 * @param bookId
+	 * @return
+	 */
+	public boolean checkIfBookIdExists(Long bookId);
 }

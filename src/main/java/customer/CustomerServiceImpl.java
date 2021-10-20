@@ -50,4 +50,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		customerDAO.deleteById(customerId);
 	}
 
+	@Override
+	public boolean checkIfCustomerIdExists(Long customerId) {		
+		return customerDAO.existsById(customerId);
+	}
+
 }

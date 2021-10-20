@@ -37,6 +37,18 @@ public class Loan {
 	@Column(name = "status")
 	private LoanStatus status;
 
+	public Loan() {
+		super();
+	}
+
+	public Loan(LoanId pk, LocalDate beginDate, LocalDate endDate, LoanStatus status) {
+		super();
+		this.pk = pk;
+		this.beginDate = beginDate;
+		this.endDate = endDate;
+		this.status = status;
+	}
+
 	public LoanId getPk() {
 		return pk;
 	}

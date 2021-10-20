@@ -63,26 +63,17 @@ public class Book {
 		super();
 	}
 
-	public Book(Long id, String isbn, String title, LocalDate releaseDate, LocalDate registerDate, String author,
-			Integer totalExemplaries, Category category, Set<Loan> loans) {
+	public Book(Long bookId) {
 		super();
-		this.bookId = id;
-		this.isbn = isbn;
-		this.title = title;
-		this.releaseDate = releaseDate;
-		this.registerDate = registerDate;
-		this.author = author;
-		this.totalExemplaries = totalExemplaries;
-		this.category = category;
-		this.loans = loans;
+		this.bookId = bookId;
 	}
 
-	public Long getId() {
+	public Long getBookId() {
 		return bookId;
 	}
 
-	public void setId(Long id) {
-		this.bookId = id;
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
 	}
 
 	public String getIsbn() {

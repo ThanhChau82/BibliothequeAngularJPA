@@ -29,7 +29,7 @@ public class LoanServiceImpl implements ILoanService {
 	}
 
 	@Override
-	public List<Loan> findAllOpenLoansOfThisCustomer(String email) {
+	public List<Loan> findAllOpenLoansOfCustomer(String email) {
 		return loanDAO.findAllOpenLoansOfThisCustomerByEmail(email, LoanStatus.OPENED);
 	}
 
@@ -45,7 +45,18 @@ public class LoanServiceImpl implements ILoanService {
 
 	@Override
 	public Loan closeLoan(Loan loan) {
+		loan.setStatus(LoanStatus.CLOSED);
 		return loanDAO.save(loan);
+	}
+
+	@Override
+	public boolean checkIfLoanExists(LoanDTO loanDTO) {
+		Loan existingLoan = loanDAO.findLoanByCriteria(loanDTO.getBookId(), loanDTO.getCustomerId(), LoanStatus.OPENED);
+		if (existingLoan != null) {
+			return true;
+		}
+
+		return false;
 	}
 
 }

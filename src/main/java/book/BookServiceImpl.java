@@ -55,4 +55,9 @@ public class BookServiceImpl implements IBookService {
 		bookDAO.deleteById(bookId);
 	}
 
+	@Override
+	public boolean checkIfBookIdExists(Long bookId) {		
+		return bookDAO.existsById(bookId);
+	}
+
 }

@@ -3,6 +3,7 @@
  */
 package book;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -54,7 +55,7 @@ public class BookServiceImplMockitoJUnitTest {
 
 		Book returnedBook = new Book();
 		returnedBook.setIsbn(TEST_STRING);
-		returnedBook.setId(Long.valueOf(1));
+		returnedBook.setBookId(Long.valueOf(1));
 
 		when(bookDAOMock.save(book)).thenReturn(returnedBook);
 
@@ -73,16 +74,16 @@ public class BookServiceImplMockitoJUnitTest {
 	public void testFindBookById() {
 		// Initialize mock.
 		Book book = new Book();
-		book.setId(Long.valueOf(1));
+		book.setBookId(Long.valueOf(1));
 
-		when(bookDAOMock.getById(book.getId())).thenReturn(book);
+		when(bookDAOMock.getById(book.getBookId())).thenReturn(book);
 
 		// Test.
-		Book result = bookService.findBookById(book.getId());
+		Book result = bookService.findBookById(book.getBookId());
 
 		// Verify test.
 		assertEquals(result, book);
-		verify(bookDAOMock, times(1)).getById(book.getId());
+		verify(bookDAOMock, times(1)).getById(book.getBookId());
 	}
 
 	/**
@@ -205,4 +206,20 @@ public class BookServiceImplMockitoJUnitTest {
 		verify(bookDAOMock, times(1)).deleteById(Long.valueOf(1));
 	}
 
+	/**
+	 * Test method for
+	 * {@link book.BookServiceImpl#checkIfBookIdExists(java.lang.Long)}.
+	 */
+	@Test
+	public void testCheckIfBookIdExists() {
+		// Initalize mock.
+		when(bookDAOMock.existsById(Long.valueOf(1))).thenReturn(true);
+
+		// Test.
+		boolean result = bookService.checkIfBookIdExists(Long.valueOf(1));
+
+		// Verify.
+		assertTrue(result);
+		verify(bookDAOMock, times(1)).existsById(Long.valueOf(1));
+	}
 }

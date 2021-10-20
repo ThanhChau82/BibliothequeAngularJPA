@@ -37,7 +37,24 @@ public class BookDTO {
 	private Integer totalExemplaries;
 
 	@ApiModelProperty(value = "Book category")
-	private CategoryDTO category;
+	private CategoryDTO category;	
+	
+	public BookDTO() {
+		super();
+	}
+
+	public BookDTO(Long bookId, String isbn, String title, LocalDate releaseDate, LocalDate registerDate, String author,
+			Integer totalExemplaries, CategoryDTO category) {
+		super();
+		this.bookId = bookId;
+		this.isbn = isbn;
+		this.title = title;
+		this.releaseDate = releaseDate;
+		this.registerDate = registerDate;
+		this.author = author;
+		this.totalExemplaries = totalExemplaries;
+		this.category = category;
+	}
 
 	public Long getBookId() {
 		return bookId;
