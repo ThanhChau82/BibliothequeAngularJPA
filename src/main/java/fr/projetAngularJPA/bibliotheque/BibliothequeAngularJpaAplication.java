@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class BibliothequeAngularJpaApplication {
+public class BibliothequeAngularJpaAplication {
 	private static final String DOCUMENT_BASE_PACKAGE = "fr.projetAngularJPA.bibliotheque";
 	private static final String DOCUMENT_TITLE = "Library Spring Boot REST API Documentation";
 	private static final String DOCUMENT_DESCRIPTION = "REST APIs for managing books loans in a library";
@@ -25,7 +25,7 @@ public class BibliothequeAngularJpaApplication {
 	private static final String DOCUMENT_VERSION = "1.0";
 
 	public static void main(String[] args) {
-		SpringApplication.run(BibliothequeAngularJpaApplication.class, args);
+		SpringApplication.run(BibliothequeAngularJpaAplication.class, args);
 	}
 
 	/**
